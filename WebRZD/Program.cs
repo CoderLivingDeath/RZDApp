@@ -23,7 +23,6 @@ namespace WebRZD
             AppConfigure(app);
 
             app.Run();
-                
         }
 
         private static void ServiceConfigure(IServiceCollection services, IConfiguration configuration)

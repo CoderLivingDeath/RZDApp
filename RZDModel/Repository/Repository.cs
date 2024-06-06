@@ -10,10 +10,13 @@ namespace RZDModel.Repository
 {
     public class Repository<T> : Base.Repository<T> where T : class
     {
+        private readonly DbContext _dbContext;
+
         private DbSet<T> _dbSet;
 
-        public Repository(DbContext context) : base(context)
+        public Repository(DbContext context)
         {
+            _dbContext = context;
             _dbSet = _dbContext.Set<T>();
         }
 
