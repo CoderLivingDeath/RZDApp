@@ -1,0 +1,6 @@
+@WebRZD_HostAddress = http://localhost:5195
+
+GET {{WebRZD_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
