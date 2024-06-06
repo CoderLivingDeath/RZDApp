@@ -1,4 +1,5 @@
-﻿using RZDModel.Interfaces.Repositories;
+﻿using Microsoft.EntityFrameworkCore;
+using RZDModel.Interfaces.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,12 @@ namespace RZDModel.Repository.Base
 {
     public abstract class Repository<T> : IRepository<T>
     {
+        protected DbContext _dbContext { get; set; }
+
+        protected Repository(DbContext context)
+        {
+            _dbContext = context;
+        }
 
         public abstract T Create(T entity);
 
