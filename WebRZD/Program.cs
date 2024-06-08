@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
+using RZDModel.Data.DBContext;
 using RZDModel.Data.Payment;
 using RZDModel.Data.RZD;
-using RZDModel.DBContext;
 using RZDModel.Interfaces.Repositories;
 using RZDModel.Repository;
 using RZDModel.Repository.Base;
@@ -31,7 +31,7 @@ namespace WebRZD
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
 
-            services.AddDbContext<RZDContext>(option =>
+            services.AddDbContext<RZDDBContext>(option =>
             {
                 option.UseSqlite(configuration.GetConnectionString(AppsettingsKeys.RZDConnection));
             });
