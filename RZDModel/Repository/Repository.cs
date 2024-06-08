@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using RZDModel.Interfaces.Repositories;
 using RZDModel.Repository.Base;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace RZDModel.Repository
 {
-    public class Repository<T> : Base.Repository<T> where T : class
+    public class Repository<T> : IRepository<T> where T : class
     {
         private readonly DbContext _dbContext;
 
@@ -20,23 +21,23 @@ namespace RZDModel.Repository
             _dbSet = _dbContext.Set<T>();
         }
 
-        public override T Create(T entity)
+        public void Create(T entity)
         {
             _dbSet.Add(entity);
             _dbContext.SaveChanges();
-            return entity;
         }
 
-        public override void Delete(int id)
+        public void Delete(int id)
         {
             var entity = _dbSet.Find(id);
             if(entity != null)
             {
                 _dbSet.Remove(entity);
+                _dbContext.SaveChanges();
             }
         }
 
-        public override T Read(int id)
+        public T Read(int id)
         {
             var entity = _dbSet.Find(id);
             if( entity != null )
@@ -46,12 +47,12 @@ namespace RZDModel.Repository
             throw new InvalidOperationException();
         }
 
-        public override IEnumerable<T> ReadAll()
+        public IEnumerable<T> ReadAll()
         {
             return _dbSet.ToList();
         }
 
-        public override void Update(T entity)
+        public void Update(T entity)
         {
             _dbSet.Entry(entity).State = EntityState.Modified;
             _dbContext.SaveChanges();

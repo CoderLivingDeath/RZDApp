@@ -8,7 +8,7 @@ namespace RZDModel.Interfaces.Repositories
 {
     public interface IRepository<T>
     {
-        T Create(T entity);
+        void Create(T entity);
         T Read(int id);
         IEnumerable<T> ReadAll();
         void Update(T entity);
