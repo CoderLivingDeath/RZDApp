@@ -9,9 +9,10 @@ namespace rzd
         [Key]
         public required int id { get; set; }
 
-        [Key]
-        public required int BankAccount_id { get; set; }
+        public int? BankAccount_id { get; set; }
 
         public required string FullName { get; set; }
+
+        public required string Role { get; set; }
     }
 }

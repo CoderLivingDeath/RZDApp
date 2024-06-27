@@ -11,8 +11,6 @@ namespace rzd
 
         public required int User_id { get; set; }
 
-        public required string BankName { get; set; }
-
-        public required int AccountNumber { get; set; }
+        public required string CardNumber {  get; set; }
     }
 }

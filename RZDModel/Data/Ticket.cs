@@ -9,12 +9,12 @@ namespace rzd
         [Key]
         public required int id { get; set; }
 
-        public required int User_id { get; set; }
+        public int? User_id { get; set; }
 
         public required int PlannedRoute_id { get; set; }
 
-        public required DateTime SoldDate { get; set; }
+        public DateTime? SoldDate { get; set; }
 
-        public required string Price { get; set; }
+        public required decimal Price { get; set; }
     }
 }

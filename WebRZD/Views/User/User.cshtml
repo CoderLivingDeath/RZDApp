@@ -1,0 +1,68 @@
+﻿@page
+@model WebRZD.Views.User.UserModel
+@{
+}
+<head>
+    <title>Мой аккаунт</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            width: 80%;
+            margin: 40px auto;
+            text-align: center;
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-picture {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+            border: 5px solid #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .button {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+            .button:hover {
+                background-color: #3e8e41;
+            }
+
+        .header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+
+            .header h1 {
+                margin: 0;
+            }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Мой аккаунт</h1>
+    </div>
+    <div class="container">
+        <img src="profile-picture.jpg" alt="Profile Picture" class="profile-picture">
+        <h2>FullName: John Doe</h2>
+        <button class="button">Добавить банковскую карту</button>
+        <button class="button">Выйти из аккаунта</button>
+    </div>
+</body>

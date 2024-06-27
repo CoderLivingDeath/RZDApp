@@ -1,0 +1,118 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url(Road2.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    align-items: stretch;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 1em;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+}
+
+    header nav ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: flex-start;
+    }
+
+    header nav li {
+        margin-right: 20px;
+    }
+
+    header nav a {
+        color: #fff;
+        text-decoration: none;
+    }
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2em;
+}
+
+.hero h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.hero button {
+    background-color: #337ab7;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+    .hero button:hover {
+        background-color: #23527c;
+    }
+
+.hero,
+.features,
+.how-to {
+    background-color: #fff;
+    padding: 2em;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    margin-bottom: 5px;
+}
+
+    .features h2,
+    .how-to h2 {
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+
+    .features ul,
+    .how-to ol {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .features li,
+    .how-to li {
+        margin-bottom: 10px;
+    }
+
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 1em;
+    text-align: center;
+    clear: both;
+}
+
+.main-container {
+    background-color: #337ab7;
+    padding: 2em;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 01);
+}
+
+.authorization {
+    color: #fff;
+    text-decoration: none;
+}
+
+    .authorization a {
+        color: #fff;
+        text-decoration: none;
+        margin-right: 10px;
+    }

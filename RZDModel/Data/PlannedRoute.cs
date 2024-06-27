@@ -23,6 +23,8 @@ namespace rzd
 
         public required DateTime ArrivalDate { get; set; }
 
-        public required IEnumerable<int> Tickets_id { get; set; }
+        public required IList<int> Tickets_id { get; set; }
+
+        public required Decimal Price { get; set; }
     }
 }

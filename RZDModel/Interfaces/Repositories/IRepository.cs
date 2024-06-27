@@ -10,7 +10,7 @@ namespace RZDModel.Interfaces.Repositories
     {
         void Create(T entity);
         T Read(int id);
-        IEnumerable<T> ReadAll();
+        IList<T> ReadAll();
         void Update(T entity);
         void Delete(int id);
     }

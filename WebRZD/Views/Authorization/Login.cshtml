@@ -1,0 +1,15 @@
+﻿@page
+@model WebRZD.Views.Login.LoginModel
+@{
+    ViewBag.Title = "Login";
+}
+<div>
+    <form method="post" action="Login">
+        <label for="Login">Login</label>
+        <input type="login" id="Login" name="Login" required>
+        <label for="Password">Password</label>
+        <input type="Password" id="Password" name="Password" required>
+        <label>Submit</label>
+        <input type="submit" value="Войти"></input>
+    </form>
+</div>

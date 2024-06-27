@@ -1,0 +1,68 @@
+﻿@page
+@using WebRZD.Models.RoutsModel;
+@using WebRZD.Models;
+@{
+}
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .ticket-container {
+            max-width: 500px;
+            margin: 40px auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .ticket-info {
+            margin-bottom: 20px;
+        }
+
+            .ticket-info label {
+                display: block;
+                margin-bottom: 10px;
+            }
+
+            .ticket-info span {
+                font-weight: bold;
+            }
+
+        .buy-button {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+            .buy-button:hover {
+                background-color: #3e8e41;
+            }
+    </style>
+</head>
+<body>
+    <div class="ticket-container">
+        <h2>Билет на поезд</h2>
+        <div class="ticket-info">
+            <label>Маршрут:</label>
+            <span>От: @ViewBag.Route.From, До: @ViewBag.Route.To</span>
+            <br>
+            <label>Время отправления:</label>
+            <span>@ViewBag.Route.DepartureTime</span>
+            <br>
+            <label>Время прибытия:</label>
+            <span>@ViewBag.Route.ArrivalTime</span>
+            <br>
+            <label>Цена:</label>
+            <span>@ViewBag.Route.Price р</span>
+        </div>
+        <form action="~/Routs/PayTicket/@ViewBag.Route.Id" method="post">
+            <button class="buy-button" type="submit">купить</button>
+        </form>
+    </div>
+</body>

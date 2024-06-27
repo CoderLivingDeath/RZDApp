@@ -46,7 +46,7 @@ namespace RZDModel.Repository
             throw new InvalidOperationException();
         }
 
-        public IEnumerable<T> ReadAll()
+        public IList<T> ReadAll()
         {
             return _dbSet.ToList();
         }

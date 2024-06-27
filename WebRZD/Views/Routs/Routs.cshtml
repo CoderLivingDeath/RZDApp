@@ -1,0 +1,112 @@
+﻿@page
+@using WebRZD.Models.RoutsModel
+@model IEnumerable<RouteForm>
+@{
+    ViewBag.Title = "Билеты РЖД";
+}
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
+
+        .route-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            width: 80%;
+            margin: 40px auto;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+            .route-list li {
+                padding: 20px;
+                border-bottom: 1px solid #ccc;
+            }
+
+                .route-list li:last-child {
+                    border-bottom: none;
+                }
+
+        .route-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+            .route-info span {
+                margin-right: 20px;
+                font-size: 16px;
+                color: #333;
+            }
+
+                .route-info span.route-name {
+                    font-weight: bold;
+                    font-size: 18px;
+                }
+
+                .route-info span.time {
+                    font-size: 14px;
+                    color: #666;
+                }
+
+                .route-info span.price {
+                    font-size: 18px;
+                    font-weight: bold;
+                    color: #337ab7;
+                }
+
+        .buy-button {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+            .buy-button:hover {
+                background-color: #3e8e41;
+            }
+
+            .buy-button:active {
+                background-color: #3e8e41;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            }
+
+        .route-list li:hover {
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+<h1>Билеты РЖД</h1>
+<ul class="route-list">
+    @foreach (var route in ViewBag.Routes)
+    {
+        <li>
+            <div class="route-info">
+                <span>Маршрут: @route.From - @route.To</span>
+                <span>Отправление: @route.DepartureTime</span>
+                <span>Прибытие: @route.ArrivalTime</span>
+                <span>Стоимость: @route.Price руб.</span>
+                @if (route.IsAllSold)
+                {
+                    <form>
+                        <button class="buy-button" type="submit">Нет билетов</button>
+                    </form>
+                }
+                else
+                {
+                    <form action="~/Routs/PayTicket/@route.Id" method="get">
+                        <button class="buy-button" >Купить</button>
+                    </form>
+                    
+                }
+            </div>
+        </li>
+    }
+</ul>

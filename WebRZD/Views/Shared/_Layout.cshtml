@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - WebApplication</title>
+
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="~/home/index">Главная</a></li>
+                <li><a href="~/Routs/List">Купить билет</a></li>
+            </ul>
+        </nav>
+        @if (User.Identity.IsAuthenticated)
+        {
+            <div>
+            <label class="authorization"><a href="~/Authorization/Registration">Вы авторризированны</a></label>
+            <label class="authorization"><a href="~/Authorization/Logout">Logout</a></label>
+            </div>
+        }
+        else
+        {
+            <div>
+            <label class="authorization"><a href="~/Authorization/Registration">Авторизоваться</a></label>
+            <label class="authorization"><a href="~/Authorization/Login">Войти</a></label>
+            </div>
+        }
+    </header>
+    <main>
+        @RenderBody()
+    </main>
+</body>
+<footer>
+    <p>© 2024 ЖД Билеты. Все права защищены.</p>
+</footer>
+</html>

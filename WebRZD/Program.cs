@@ -1,10 +1,12 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using rzd;
 using RZDModel.Data.DBContext;
-using RZDModel.Data.Payment;
-using RZDModel.Data.RZD;
 using RZDModel.Interfaces.Repositories;
+using RZDModel.Interfaces.Services;
 using RZDModel.Repository;
-using RZDModel.Repository.Base;
+using RZDModel.Services;
 using System.Data.Common;
 using WebRZD.Infrastructure;
 
@@ -30,27 +32,32 @@ namespace WebRZD
             services.AddControllers();
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
+            services.AddControllersWithViews();
+
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options => options.LoginPath = "/Authorization/Login");
+            services.AddAuthorization();
 
             services.AddDbContext<RZDDBContext>(option =>
             {
                 option.UseSqlite(configuration.GetConnectionString(AppsettingsKeys.RZDConnection));
             });
 
-            AddRZDRepositories();
-            AddPaymentRepositroyes();
+            services.AddScoped<IRepository<BankAccount>, BankAccountRepository>();
+            services.AddScoped<IRepository<PlannedRoute>, PlannedRouteRepository>();
+            services.AddScoped<IRepository<Station>, StationRepository>();
+            services.AddScoped<IRepository<Ticket>, TicketRepository>();
+            services.AddScoped<IRepository<Train>, TrainRepository>();
+            services.AddScoped<IRepository<UserCredentials>, UserCredentialsRepository>();
+            services.AddScoped<IRepository<User>, UserRepository>();
 
-            void AddRZDRepositories()
-            {
-                services.AddScoped<IRepository<Destination>,DestinationRepository>();
-                services.AddScoped<IRepository<RZDModel.Data.RZD.Path>,PathRepository >();
-                services.AddScoped<IRepository<PlannedRoute>, PlannedRouteRepository>();
-                services.AddScoped<IRepository<Train>, TrainRepository>();
-            }
+            services.AddScoped<IPaymentService, PaymentService>();
+            services.AddScoped<IRouteService, RouteService>();
+            services.AddScoped<ITicketService, TicketService>();
+            services.AddScoped<ITrainService, TrainService>();
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IStationService, StationService>();
+            services.AddScoped<IAuthorizationService, AuthorizationService>();
 
-            void AddPaymentRepositroyes()
-            {
-                services.AddScoped<IRepository<PaymentData>, PaymentDataRepository>();
-            }
         }
 
         private static void AppConfigure(WebApplication app)
@@ -58,12 +65,16 @@ namespace WebRZD
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
+                app.UseExceptionHandler("/Home/Error");
                 app.UseSwagger();
                 app.UseSwaggerUI();
+                app.UseHsts();
             }
 
             app.UseHttpsRedirection();
+            app.UseStaticFiles();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.MapControllers();
